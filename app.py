@@ -45,7 +45,7 @@ def docopt_cmd(func):
 
 
 def intro():
-    os.system("clear")
+    os.system('cls' if os.name == 'nt' else 'clear')
     print(__doc__)
 
 
@@ -56,54 +56,53 @@ class APP(cmd.Cmd):
     def do_add(self, arg):
         """Usage: add <firstname> <surname> <number>"""
         try:
-            firstname = arg["<firstname>"]
-            surname = arg["<surname>"]
-            number = arg["<number>"]
-            response = app_instance.add(firstname, surname, number)
-            if "success" in response:
-                print(success("\t\t\t\t\t\t" + response))
+            self.firstname = arg["<firstname>"]
+            self.surname = arg["<surname>"]
+            self.number = arg["<number>"]
+            self.response = app_instance.add(self.firstname, self.surname, self.number)
+            if "success" in self.response:
+                print(success("\t\t\t\t\t\t" + self.response))
             else:
-                print(error("\t\t\t\t\t\t" + response))
+                print(error("\t\t\t\t\t\t" + self.response))
         except TypeError or ValueError:
             print(error("\t\t\t\tInvalid data!"))
 
     def do_edit(self, arg):
         """Usage: edit <number> <firstname> <surname>"""
         try:
-            number = arg["<number>"]
-            firstname = arg["<firstname>"]
-            surname = arg["<surname>"]
-            response = app_instance.edit(number, firstname, surname)
+            self.number = arg["<number>"]
+            self.firstname = arg["<firstname>"]
+            self.surname = arg["<surname>"]
+            self.response = app_instance.edit(self.number, self.firstname, self.surname)
 
-            if success in response:
-                print(success("\t\t\t\t\t\t" + response))
+            if success in self.response:
+                print(success("\t\t\t\t\t\t" + self.response))
             else:
-                print(error("\t\t\t\t\t\t" + response))
+                print(error("\t\t\t\t\t\t" + self.response))
         except TypeError or ValueError:
             print(error("\t\t\t\tInvalid data!"))
 
     def do_view(self, arg):
-        data = app_instance.view()
+        self.data = app_instance.view()
         # Generate a table for the data.
-        data_table = table(data)
-        print(data_table)
+        print(table(self.data))
 
     def do_delete(self, arg):
         """Usage: <number>"""
         try:
-            number = arg["<number>"]
-            response = app_instance.delete(number)
-            if "deleted" in response:
-                print(success("\t\t\t\t\t\t" + response))
+            self.number = arg["<number>"]
+            self.response = app_instance.delete(self.number)
+            if "deleted" in self.response:
+                print(success("\t\t\t\t\t\t" + self.response))
             else:
-                print(error("\t\t\t\t\t\t" + response))
+                print(error("\t\t\t\t\t\t" + self.response))
         except TypeError or ValueError:
             print(error("\t\t\t\tInvalid data!"))
 
     @docopt_cmd
     def do_quit(self, arg):
         """Usage: quit"""
-        os.system('clear')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print ('Contacts has quit')
         exit()
 
@@ -114,5 +113,5 @@ if __name__ == "__main__":
         app_instance = Contacts()
         APP().cmdloop()
     except KeyboardInterrupt:
-        os.system("clear")
+        os.system('cls' if os.name == 'nt' else 'clear')
         print('Contacts has quit!')
