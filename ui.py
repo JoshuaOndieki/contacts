@@ -1,4 +1,4 @@
-from termcolor import colored, cprint
+from termcolor import colored
 from prettytable import PrettyTable
 
 
@@ -9,7 +9,7 @@ def success(text):
 
 
 def magenta(text):
-    """Returns a green colored text
+    """Returns a magenta colored text
     """
     return(colored(text, 'magenta', attrs=['blink', 'bold']))
 
@@ -23,3 +23,14 @@ def error(text):
 def table(data):
     """Generates and returns a table
     """
+
+    x = PrettyTable()
+    name = colored("Name", 'blue')
+    phone_number = colored("Phone Number", 'blue')
+    x.field_names = [name, phone_number]
+
+    for contact in data:
+        x.add_row([contact[0] + contact[1], contact])
+
+    x.sortby = name
+    return(x)
