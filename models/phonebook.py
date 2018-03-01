@@ -12,9 +12,12 @@ class Contacts():
         else:
             return("Contact exists!")
 
-
-    def edit(self):
-        pass
+    def edit(self, number, firstname, surname):
+        if number in self.data.keys():
+            self.data[number] = [firstname, surname]
+            return("Edit successful!")
+        else:
+            return("No such contact!")
 
     def view(self):
         pass
