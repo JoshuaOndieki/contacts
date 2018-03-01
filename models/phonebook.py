@@ -30,6 +30,8 @@ class Contacts():
 
         """
 
+        if type(number) is not int:
+            raise(TypeError)
         # only add non-existent contacts
         if number not in self.data.keys():
             self.contact = Contact(firstname, surname, number)
@@ -53,6 +55,9 @@ class Contacts():
             question is not in the phonebook.
 
         """
+
+        if type(number) is not int:
+            raise(TypeError)
         # prevent accidental addition of new contacts by letting user know
         # if a contact is new.
         if number in self.data.keys():
@@ -87,6 +92,8 @@ class Contacts():
 
         """
 
+        if type(number) is not int:
+            raise(TypeError)
         # Check for existence before deletion.
         if number in self.data.keys():
             del self.data[number]

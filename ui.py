@@ -30,7 +30,8 @@ def table(data):
     x.field_names = [name, phone_number]
 
     for contact in data:
-        x.add_row([contact[0] + contact[1], contact])
+        contact_name = data[contact][0] + " " + data[contact][1]
+        x.add_row([contact_name, contact])
 
     x.sortby = name
     return(x)

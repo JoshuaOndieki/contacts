@@ -55,18 +55,32 @@ class APP(cmd.Cmd):
     @docopt_cmd
     def do_add(self, arg):
         """Usage: add <firstname> <surname> <number>"""
-        firstname = arg["<firstname>"]
-        surname = arg["<surname>"]
-        number = arg["<number>"]
-        response = app_instance.add(firstname, surname, number)
-        if "success" in response:
-            print(success("\t\t\t\t\t\t" + response))
-        else:
-            print(error("\t\t\t\t\t\t" + response))
+        try:
+            firstname = arg["<firstname>"]
+            surname = arg["<surname>"]
+            number = arg["<number>"]
+            response = app_instance.add(firstname, surname, number)
+            if "success" in response:
+                print(success("\t\t\t\t\t\t" + response))
+            else:
+                print(error("\t\t\t\t\t\t" + response))
+        except TypeError or ValueError:
+            print(error("\t\t\t\tInvalid data!"))
 
     def do_edit(self, arg):
         """Usage: edit <number> <firstname> <surname>"""
-        pass
+        try:
+            number = arg["<number>"]
+            firstname = arg["<firstname>"]
+            surname = arg["<surname>"]
+            response = app_instance.edit(number, firstname, surname)
+
+            if success in response:
+                print(success("\t\t\t\t\t\t" + response))
+            else:
+                print(error("\t\t\t\t\t\t" + response))
+        except TypeError or ValueError:
+            print(error("\t\t\t\tInvalid data!"))
 
     def do_view(self, arg):
         data = app_instance.view()
@@ -76,7 +90,15 @@ class APP(cmd.Cmd):
 
     def do_delete(self, arg):
         """Usage: <number>"""
-        pass
+        try:
+            number = arg["<number>"]
+            response = app_instance.delete(number)
+            if "deleted" in response:
+                print(success("\t\t\t\t\t\t" + response))
+            else:
+                print(error("\t\t\t\t\t\t" + response))
+        except TypeError or ValueError:
+            print(error("\t\t\t\tInvalid data!"))
 
     @docopt_cmd
     def do_quit(self, arg):
