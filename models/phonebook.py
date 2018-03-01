@@ -1,5 +1,6 @@
 from contact import Contact
 
+
 class Contacts():
     def __init__(self):
         self.data = {}
@@ -20,7 +21,11 @@ class Contacts():
             return("No such contact!")
 
     def view(self):
-        pass
+        return(self.data)
 
-    def delete(self):
-        pass
+    def delete(self, number):
+        if number in self.data.keys():
+            del self.data[number]
+            return("Contact deleted!")
+        else:
+            return("No such contact!")
