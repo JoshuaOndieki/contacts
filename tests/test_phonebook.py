@@ -19,7 +19,7 @@ class TestPhoneBook(unittest.TestCase):
 
     def test_retrieves_contacts(self):
         self.instance.add('David', 'Kironde', '0790909090')
-        self.retrieved_contacts = self.instance.data
+        self.retrieved_contacts = self.instance.view()
         self.assertTrue('David' == self.retrieved_contacts['0790909090'][0] and "Kironde" == self.instance.data['0790909090'][1], msg="Should retrieve contact and reflect the correct contact name!")
 
     def test_delete_contact(self):
