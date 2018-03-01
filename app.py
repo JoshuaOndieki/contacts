@@ -8,6 +8,7 @@ Or type help followed by the command you need help on.
         delete <number>
         view
         quit
+        help
 """
 
 from docopt import docopt, DocoptExit
@@ -48,11 +49,14 @@ def docopt_cmd(func):
 
 
 def intro():
+    print("\t\t\t\tApp launching...")
     os.system('cls' if os.name == 'nt' else 'clear')
     print(__doc__)
 
 
 class APP(cmd.Cmd):
+    """Application instance class.
+    """
     prompt = magenta("CONTACTS $$$ ")
 
     @docopt_cmd
@@ -92,7 +96,7 @@ class APP(cmd.Cmd):
     def do_view(self, arg):
         """Usage: view"""
         self.data = app_instance.view()
-        # Generate a table for the data.
+        # Generate and print table for the data.
         print(table(self.data))
 
     @docopt_cmd
@@ -124,5 +128,6 @@ if __name__ == "__main__":
         app_instance = Contacts()
         APP().cmdloop()
     except KeyboardInterrupt:
+        text = magenta("Contacts has quit")
         os.system('cls' if os.name == 'nt' else 'clear')
-        print('Contacts has quit!')
+        print(text)
