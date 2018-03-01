@@ -1,3 +1,13 @@
+"""This is a TDD module.
+
+Args:
+    Arguments are hard coded.
+
+Returns:
+    Returns the status of tests run.
+
+"""
+
 import unittest
 from models.phonebook import Contacts
 
