@@ -30,7 +30,7 @@ class TestPhoneBook(unittest.TestCase):
         self.instance.edit('0720502050', 'updated', 'name')
         self.assertTrue('updated' == self.instance.data['0720502050'][0], msg="Contact info should be updated successfully!")
 
-    def test_edit_works_only_for existing_contacts(self):
+    def test_edit_works_only_for_existing_contacts(self):
         response = self.instance.edit('0704440666', 'edit', 'new')
         self.assertTrue('No such contact!', response, msg="Only existing contacts can be edited!")
 
