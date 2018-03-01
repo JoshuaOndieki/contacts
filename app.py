@@ -1,9 +1,12 @@
 """
+                        Thank You for using Contacts app!
+Type help for assistance.
+Or type help followed by the command you need help on.
     Usage:
         add <firstname> <surname> <number>
         edit <number> <firstname> <lastname>
-        view
         delete <number>
+        view
         quit
 """
 
@@ -64,31 +67,37 @@ class APP(cmd.Cmd):
                 print(success("\t\t\t\t\t\t" + self.response))
             else:
                 print(error("\t\t\t\t\t\t" + self.response))
-        except Exception:
+        except Exception as e:
+            print(e)
             print(error("\t\t\t\tInvalid data!"))
 
+    @docopt_cmd
     def do_edit(self, arg):
         """Usage: edit <number> <firstname> <surname>"""
         try:
-            self.number = arg["<number>"]
             self.firstname = arg["<firstname>"]
             self.surname = arg["<surname>"]
+            self.number = arg["<number>"]
             self.response = app_instance.edit(self.number, self.firstname, self.surname)
 
-            if success in self.response:
+            if "success" in self.response:
                 print(success("\t\t\t\t\t\t" + self.response))
             else:
                 print(error("\t\t\t\t\t\t" + self.response))
-        except Exception:
+        except Exception as e:
+            print(e)
             print(error("\t\t\t\tInvalid data!"))
 
+    @docopt_cmd
     def do_view(self, arg):
+        """Usage: view"""
         self.data = app_instance.view()
         # Generate a table for the data.
         print(table(self.data))
 
+    @docopt_cmd
     def do_delete(self, arg):
-        """Usage: <number>"""
+        """Usage: delete <number>"""
         try:
             self.number = arg["<number>"]
             self.response = app_instance.delete(self.number)
