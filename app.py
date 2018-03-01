@@ -64,7 +64,7 @@ class APP(cmd.Cmd):
                 print(success("\t\t\t\t\t\t" + self.response))
             else:
                 print(error("\t\t\t\t\t\t" + self.response))
-        except TypeError or ValueError:
+        except Exception:
             print(error("\t\t\t\tInvalid data!"))
 
     def do_edit(self, arg):
@@ -79,7 +79,7 @@ class APP(cmd.Cmd):
                 print(success("\t\t\t\t\t\t" + self.response))
             else:
                 print(error("\t\t\t\t\t\t" + self.response))
-        except TypeError or ValueError:
+        except Exception:
             print(error("\t\t\t\tInvalid data!"))
 
     def do_view(self, arg):
@@ -96,14 +96,16 @@ class APP(cmd.Cmd):
                 print(success("\t\t\t\t\t\t" + self.response))
             else:
                 print(error("\t\t\t\t\t\t" + self.response))
-        except TypeError or ValueError:
+        except Exception as e:
+            print(e)
             print(error("\t\t\t\tInvalid data!"))
 
     @docopt_cmd
     def do_quit(self, arg):
         """Usage: quit"""
+        self.text = magenta("Contacts has quit")
         os.system('cls' if os.name == 'nt' else 'clear')
-        print ('Contacts has quit')
+        print (self.text)
         exit()
 
 
