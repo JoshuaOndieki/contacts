@@ -115,7 +115,7 @@ class APP(cmd.Cmd):
     def do_quit(self, arg):
         """Usage: quit"""
         self.text = magenta("Contacts has quit")
-        os.system('cls' if os.name == 'nt' else 'clear')
+        # os.system('cls' if os.name == 'nt' else 'clear')
         print (self.text)
         exit()
 
