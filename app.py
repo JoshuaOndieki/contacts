@@ -49,9 +49,6 @@ def docopt_cmd(func):
 
 
 def intro():
-    text = magenta("\t\t\t\tApp launching...")
-    print(text)
-    os.system('cls' if os.name == 'nt' else 'clear')
     print(__doc__)
 
 
@@ -125,8 +122,9 @@ class APP(cmd.Cmd):
 
 if __name__ == "__main__":
     try:
-        intro()
         app_instance = Contacts()
+        os.system('cls' if os.name == 'nt' else 'clear')
+        intro()
         APP().cmdloop()
     except KeyboardInterrupt:
         text = magenta("Contacts has quit")
