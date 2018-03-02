@@ -29,7 +29,38 @@ Just type `python app.py` and the app will launch.
 
 
 ### Usage
-This section will be updated in no time.
+The app supports four main commands.
+**add**, **edit**,**view** and **delete**
+Use the **help** command in case you forget how to use these commands.
+
+![App Launch](media/contactsapplaunch.png)
+
+#### Add Example
+```
+add Some Name 25400000000
+```
+![Add](media/contactsadd.png)
+
+#### Edit Example
+```
+edit 25400000000 Updated Name
+```
+![Edit](media/contactsedit.png)
+
+#### View Example
+```
+view
+```
+![View](media/contactsview.png)
+
+#### Delete Example
+```
+delete 25400000000
+```
+![Delete](media/contactsdelete.png)
+
+#### Errors handled
+![Errors](media/contactserrors.png)
 
 ## Running the tests
 
