@@ -49,7 +49,8 @@ def docopt_cmd(func):
 
 
 def intro():
-    print("\t\t\t\tApp launching...")
+    text = magenta("\t\t\t\tApp launching...")
+    print(text)
     os.system('cls' if os.name == 'nt' else 'clear')
     print(__doc__)
 
